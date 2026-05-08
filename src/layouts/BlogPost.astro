@@ -11,7 +11,7 @@ type Props = CollectionEntry<'blog'>['data'];
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="ko">
 	<head>
 		<BaseHead title={title} description={description} />
 		<style>
@@ -39,18 +39,27 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			.title {
 				margin-bottom: 1em;
 				padding: 1em 0;
-				text-align: center;
 				line-height: 1;
 			}
 			.title h1 {
 				margin: 0 0 0.5em 0;
+				line-height: 1.3;
 			}
 			.date {
 				margin-bottom: 0.5em;
 				color: rgb(var(--gray));
+				font-size: 0.9em;
 			}
 			.last-updated-on {
 				font-style: italic;
+			}
+			.giscus-wrap {
+				width: 720px;
+				max-width: calc(100% - 2em);
+				margin: 3em auto 0;
+				padding: 0 1em;
+				border-top: 1px solid rgb(var(--gray-light));
+				padding-top: 2em;
 			}
 		</style>
 	</head>
@@ -69,7 +78,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 							{
 								updatedDate && (
 									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
+										마지막 수정: <FormattedDate date={updatedDate} />
 									</div>
 								)
 							}
@@ -81,6 +90,29 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				</div>
 			</article>
 		</main>
+
+		<!-- giscus 댓글 -->
+		<!-- 설정 방법: https://giscus.app 에서 YOUR_REPO 정보를 채워주세요 -->
+		<div class="giscus-wrap">
+			<script
+				is:inline
+				src="https://giscus.app/client.js"
+				data-repo="YOUR_GITHUB_USERNAME/YOUR_REPO_NAME"
+				data-repo-id="YOUR_REPO_ID"
+				data-category="Comments"
+				data-category-id="YOUR_CATEGORY_ID"
+				data-mapping="pathname"
+				data-strict="0"
+				data-reactions-enabled="1"
+				data-emit-metadata="0"
+				data-input-position="bottom"
+				data-theme="light"
+				data-lang="ko"
+				crossorigin="anonymous"
+				async
+			></script>
+		</div>
+
 		<Footer />
 	</body>
 </html>
