@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
+import profileImage from '../assets/a.jpg';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
@@ -26,6 +28,15 @@ const posts = (await getCollection('blog'))
 				margin-bottom: 3em;
 				padding-bottom: 2em;
 				border-bottom: 1px solid rgb(var(--gray-light));
+			}
+			.profile {
+				margin-bottom: 1.2em;
+			}
+			.profile img {
+				width: 80px;
+				height: 80px;
+				border-radius: 50%;
+				object-fit: cover;
 			}
 			.intro p {
 				color: rgb(var(--gray-dark));
@@ -85,6 +96,9 @@ const posts = (await getCollection('blog'))
 		<Header />
 		<main>
 			<section class="intro">
+				<div class="profile">
+					<Image src={profileImage} alt="gigi" width={80} height={80} />
+				</div>
 				<p>
 					IT 현업에서 9년째 일하고 있습니다. AI가 내 일을 바꾸는 걸 직접 겪으면서,
 					그 경험을 있는 그대로 씁니다.
